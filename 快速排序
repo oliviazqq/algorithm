@@ -1,0 +1,47 @@
+//快速排序
+#include<stdio.h>
+int a[10] = { 6, 1, 2, 7, 9, 3, 4, 5, 10, 8 };
+//定义全局变量
+void quickSort(int left, int right)
+{
+	int key;
+	int i, j;
+	int temp;
+	key = a[left];
+	i = left;
+	j = right;
+	if (left > right)
+		return;
+	while (i != j)
+	{
+		while (a[j]>=key&&i!=j)
+		{
+			j--;
+		}
+		while (a[i]<=key&&i!=j)
+		{
+			i++;
+		}
+		temp = a[i]; a[i] = a[j]; a[j] = temp;
+	}
+	a[left] = a[j];
+	a[j] = key;
+	quickSort(left, i - 1);
+	quickSort(i + 1, right);
+}
+void main()
+{
+	int i;
+	//for (i = 0; i < 9; i++)
+	//{
+	//	scanf_s("%d", &a[i]);
+	//}
+	quickSort(0, 9);
+	//输出排序后的结果
+	for (int i = 0; i < 9; i++)
+	{
+		printf("%d", a[i]);
+	}
+	printf("\n");
+
+}
